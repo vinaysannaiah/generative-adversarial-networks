@@ -196,7 +196,7 @@ for epoch in range(25):
         # 3rd Step: Printing the losses and saving the real images and the generated images of the minibatch every 100 steps
         print('[%d/%d][%d/%d] Loss_Des: %.4f Loss_Gen: %.4f' % (epoch, 25, i, len(data_loader), error_Des.data[0], error_Gen.data[0]))
         if i % 100 == 0: # for every 100 steps
-            vutils.save_image(real, '%s/real_sample.png' % "./results", normalize= True)
+            vutils.save_image(real, '%s/real_sample.png' % "./Results", normalize= True)
             fake = Gen_net(noise)
             vutils.save_image(fake.data, '%s/fake_sample_epoch%03d.png' % ("./results", epoch), normalize= True)
                 
