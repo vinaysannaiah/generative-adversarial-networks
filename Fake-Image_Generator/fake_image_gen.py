@@ -17,5 +17,16 @@ from torch.autograd import Variable # torch variable convertor
 import torchvision.utils as vutils # for Visulization purpose
 
 # Loading the dataset
-dataset = dset.CIFAR10(root = './data', download = True, transform = transform) # We download the training set in the ./data folder and we apply the previous transformations on each image.
-dataloader = torch.utils.data.DataLoader(dataset, batch_size = batchSize, shuffle = True, num_workers = 2) # We use dataLoader to get the images of the training set batch by batch.
+# We download the training set in the ./data folder and we apply the previous transformations on each image.
+dataset = dset.CIFAR10(root = './data', 
+                       download = True, 
+                       transform = transform) 
+# We use dataLoader to get the images of the training set batch by batch.
+dataloader = torch.utils.data.DataLoader(dataset, 
+                                         batch_size = batchSize, 
+                                         shuffle = True, num_workers = 2) 
+
+# Set the hyper parameters
+batchsize = 64 # Set the batch size
+imagesize = 64 # Set the size of the generated images to (64 x 64)
+
