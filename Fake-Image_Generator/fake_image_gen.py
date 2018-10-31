@@ -22,6 +22,7 @@ dataset = dset.CIFAR10(root = './data',
                        download = True, 
                        transform = transform) 
 # We use dataLoader to get the images of the training set batch by batch.
+# num_workers = 2 - we will have two parallel threads that will load the data
 dataloader = torch.utils.data.DataLoader(dataset, 
                                          batch_size = batchSize, 
                                          shuffle = True, num_workers = 2) 
@@ -29,4 +30,10 @@ dataloader = torch.utils.data.DataLoader(dataset,
 # Set the hyper parameters
 batchsize = 64 # Set the batch size
 imagesize = 64 # Set the size of the generated images to (64 x 64)
+
+# Create the transformations
+'''We create a list of transformations (scaling, tensor conversion, 
+normalization) to apply to the input images and make it compatible to the Neural network.'''
+transform = transforms.Compose([transforms.Scale(imagesize), transforms.ToTensor(),
+                                transforms.Normalize((0.5,0.5,0.5),(0.5,0.5,0.5))])
 
