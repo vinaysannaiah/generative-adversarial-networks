@@ -37,3 +37,9 @@ normalization) to apply to the input images and make it compatible to the Neural
 transform = transforms.Compose([transforms.Scale(imagesize), transforms.ToTensor(),
                                 transforms.Normalize((0.5,0.5,0.5),(0.5,0.5,0.5))])
 
+# Defining a function that initializes the weights for our Neural Network.
+def weights_init(neur_net):
+  classname = neur_net.__class.__name__
+  if classname.find("Conv") != -1:
+    neur_net.weight.data.normal_(0.0, 0.02) # Defeining weights to the Conv Layer
+  
