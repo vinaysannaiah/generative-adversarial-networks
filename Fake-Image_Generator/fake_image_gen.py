@@ -42,4 +42,7 @@ def weights_init(neur_net):
   classname = neur_net.__class.__name__
   if classname.find("Conv") != -1:
     neur_net.weight.data.normal_(0.0, 0.02) # Defeining weights to the Conv Layer
-  
+  elif classname.find("BatchNorm") != -1:
+    neur_net.weight.data.normal_(0.0, 0.02) # defining weigths to the BatchNorm layer
+    neur_net.bias.data.fill_(0) # all the bias at the BatchNorm layer will be initialized to Zero
+
