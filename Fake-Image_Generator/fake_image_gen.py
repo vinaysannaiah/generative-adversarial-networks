@@ -46,3 +46,13 @@ def weights_init(neur_net):
     neur_net.weight.data.normal_(0.0, 0.02) # defining weigths to the BatchNorm layer
     neur_net.bias.data.fill_(0) # all the bias at the BatchNorm layer will be initialized to Zero
 
+# Defining the Generator
+class Gen(NN.Module): # NN.Module contains all the tools that allow us to build our neural network     
+  def __init__(self):
+    
+    
+# Defining the Descriminator
+class Des(NN.Module): # NN.Module contains all the tools that allow us to build our neural network 
+  def __init__(self):
+    
+  
