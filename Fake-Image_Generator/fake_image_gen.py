@@ -54,6 +54,11 @@ class Gen(NN.Module): # NN.Module contains all the tools that allow us to build 
     # Activate the inheritance of the inherited NN.Module:
     super(Gen, self).__init__()
     
+  # We must forward propagate the network incase of the Generator in GAN's
+  def forwardprop(self, input): # input - random vector of size 100
+    output = self.main(input)
+    return output
+    
 # Defining the Descriminator
 class Des(NN.Module): # NN.Module contains all the tools that allow us to build our neural network 
   def __init__(self):
