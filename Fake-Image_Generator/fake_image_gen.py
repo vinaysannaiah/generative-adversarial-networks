@@ -47,9 +47,12 @@ def weights_init(neur_net):
     neur_net.bias.data.fill_(0) # all the bias at the BatchNorm layer will be initialized to Zero
 
 # Defining the Generator
-class Gen(NN.Module): # NN.Module contains all the tools that allow us to build our neural network     
+class Gen(NN.Module): # NN.Module contains all the tools that allow us to build our neural network so let us inherit the NN.module class     
   def __init__(self):
-    
+    # init function defines the properties of the future objects that will be created from your class
+    # self- refers to the future object that will be created
+    # Activate the inheritance of the inherited NN.Module:
+    super(Gen, self).__init__()
     
 # Defining the Descriminator
 class Des(NN.Module): # NN.Module contains all the tools that allow us to build our neural network 
