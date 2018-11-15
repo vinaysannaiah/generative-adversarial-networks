@@ -64,7 +64,8 @@ class Des(NN.Module): # NN.Module contains all the tools that allow us to build 
   def __init__(self):
     super(Des, self).__init__() # Activate the Inheritance
   
-  
+  #we must forward propagate the network      
+  # make the conv output to be in a single view by flattening it to the next fully connected network input
   def forwardprop(self, input):  # input - generated image
         output = self.main(input) # a number between 0 and 1
         return output.view(-1) # After the series of convolutions we must flatten the Conv output
