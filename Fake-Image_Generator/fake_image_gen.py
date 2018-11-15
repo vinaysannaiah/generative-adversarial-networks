@@ -62,5 +62,9 @@ class Gen(NN.Module): # NN.Module contains all the tools that allow us to build 
 # Defining the Descriminator
 class Des(NN.Module): # NN.Module contains all the tools that allow us to build our neural network 
   def __init__(self):
-    
+    super(Des, self).__init__() # Activate the Inheritance
   
+  
+  def forwardprop(self, input):  # input - generated image
+        output = self.main(input) # a number between 0 and 1
+        return output.view(-1) # After the series of convolutions we must flatten the Conv output
