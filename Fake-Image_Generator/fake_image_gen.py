@@ -62,7 +62,12 @@ class Gen(NN.Module): # NN.Module contains all the tools that allow us to build 
 # Defining the Descriminator
 class Des(NN.Module): # NN.Module contains all the tools that allow us to build our neural network 
   def __init__(self):
-    super(Des, self).__init__() # Activate the Inheritance
+    super(Des, self).__init__() # Activate the Inheritance of the inherited NN.module
+    self.main = NN.Sequential(
+      # We must define the structure of our neural network in here. Our NN is going to be a sequential network.
+      NN.ConvTranspose2d(in_channels=100, out_channels= 512, kernel_size = 4,
+                         stride = 1, padding = 0, bias = False), # input size is 100, output - no. of feature maps
+    )
   
   #we must forward propagate the network      
   # make the conv output to be in a single view by flattening it to the next fully connected network input
