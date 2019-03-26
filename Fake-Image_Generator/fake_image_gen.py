@@ -25,7 +25,8 @@ dataset = dset.CIFAR10(root = './data',
 # num_workers = 2 - we will have two parallel threads that will load the data
 dataloader = torch.utils.data.DataLoader(dataset, 
                                          batch_size = batchSize, 
-                                         shuffle = True, num_workers = 2) 
+                                         shuffle = True,
+                                         num_workers = 2)
 
 # Set the hyper parameters
 batchsize = 64 # Set the batch size
@@ -39,20 +40,20 @@ transform = transforms.Compose([transforms.Scale(imagesize), transforms.ToTensor
 
 # Defining a function that initializes the weights for our Neural Network.
 def weights_init(neur_net):
-  classname = neur_net.__class.__name__
-  if classname.find("Conv") != -1:
-    neur_net.weight.data.normal_(0.0, 0.02) # Defeining weights to the Conv Layer
-  elif classname.find("BatchNorm") != -1:
-    neur_net.weight.data.normal_(0.0, 0.02) # defining weigths to the BatchNorm layer
-    neur_net.bias.data.fill_(0) # all the bias at the BatchNorm layer will be initialized to Zero
+    classname = neur_net.__class.__name__
+    if classname.find("Conv") != -1:
+        neur_net.weight.data.normal_(0.0, 0.02) # Defeining weights to the Conv Layer
+    elif classname.find("BatchNorm") != -1:
+        neur_net.weight.data.normal_(0.0, 0.02) # defining weigths to the BatchNorm layer
+        neur_net.bias.data.fill_(0) # all the bias at the BatchNorm layer will be initialized to Zero
 
 # Defining the Generator
 class Gen(NN.Module): # NN.Module contains all the tools that allow us to build our neural network so let us inherit the NN.module class     
-  def __init__(self):
-    # init function defines the properties of the future objects that will be created from your class
-    # self- refers to the future object that will be created
-    # Activate the inheritance of the inherited NN.Module:
-    super(Gen, self).__init__()
+    def __init__(self):
+        # init function defines the properties of the future objects that will be created from your class
+        # self- refers to the future object that will be created
+        # Activate the inheritance of the inherited NN.Module:
+        super(Gen, self).__init__()
     
   # We must forward propagate the network incase of the Generator in GAN's
   def forwardprop(self, input): # input - random vector of size 100
@@ -61,16 +62,16 @@ class Gen(NN.Module): # NN.Module contains all the tools that allow us to build 
     
 # Defining the Descriminator
 class Des(NN.Module): # NN.Module contains all the tools that allow us to build our neural network 
-  def __init__(self):
-    super(Des, self).__init__() # Activate the Inheritance of the inherited NN.module
-    self.main = NN.Sequential(
+    def __init__(self):
+        super(Des, self).__init__() # Activate the Inheritance of the inherited NN.module
+        self.main = NN.Sequential(
       # We must define the structure of our neural network in here. Our NN is going to be a sequential network.
-      NN.ConvTranspose2d(in_channels=100, out_channels= 512, kernel_size = 4,
-                         stride = 1, padding = 0, bias = False), # input size is 100, output - no. of feature maps
-    )
+        NN.ConvTranspose2d(in_channels=100, out_channels= 512, kernel_size = 4,
+                           stride = 1, padding = 0, bias = False), # input size is 100, output - no. of feature maps
+        )
   
   #we must forward propagate the network      
   # make the conv output to be in a single view by flattening it to the next fully connected network input
-  def forwardprop(self, input):  # input - generated image
+    def forwardprop(self, input):  # input - generated image
         output = self.main(input) # a number between 0 and 1
         return output.view(-1) # After the series of convolutions we must flatten the Conv output
